@@ -28,13 +28,17 @@
 ```
 2. Запускаем распознавание данных:
 ```
-   result = sts.predict('path_to_image.jpg')
+   result, flag = sts.predict('path_to_image.jpg')
 ```
 
 На выходе получаем данные в виде словаря и флага.
 
 ```
-result, flag = ({'sign':'XXXXXXXXX', 'vin':'XXXXXXXXXXXXXXXXX'}, 0)
+print(result) 
+[output]: {'sign':'XXXXXXXXX', 'vin':'XXXXXXXXXXXXXXXXX'}
+
+print(flag) 
+[output]: 0
 ```
 flag = 1, СТС не обнаружено, или хотя бы 1 поле не распознано
 
