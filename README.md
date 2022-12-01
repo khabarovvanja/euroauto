@@ -4,94 +4,40 @@
 
 1. Клонируем репозиторий GIT:
 ```
-    git clone https://github.com/nosovdmitry007/pasport_class.git -b YOLO_5
+    git clone https://github.com/khabarovvanja/euroauto.git -b YOLO_5
 ```
 2. Устанавливаем необхоимые библиотеки:
 ```
     pip install --upgrade pip
-    cd passport
+    cd euroauto
     pip install -r requirements.txt
 ```
-3. Необходимо загрузить [веса](https://disk.yandex.ru/d/phAGUf4b2XIEsw) моделей в папку `yolo5`
+3. Необходимо загрузить [веса](https://drive.google.com/drive/folders/1-HT4W6z3k4mcdnG11pe2qxkYUSOwWBou?usp=sharing) моделей в папку `yolo5`
 ```
 ├── yolo5 
 │   ├── about.txt
-│   ├── detect.pt
-│   ├── fio_INN.pt
-│   ├── inn_rotation.pt
-│   └── povorot7.pt
+│   ├── sts_detect.pt
+│   ├── sts_povorot.pt
+│   └──
 ```
-## Пример распознавания паспорта:
+## Пример распознавания данных СТС:
 1. Создаём экземпляр класса:
 ```
-   from passport_class import Passport
-   psprt = Passport()
+   from euroauto_class import Sts
+   sts = Sts()
 ```
 2. Запускаем распознавание данных:
 ```
-   result = psprt.detect_passport('path_to_image.jpg')
+   result = sts.predict('path_to_image.jpg')
 ```
 
 На выходе получаем данные в виде словаря и флага.
 
 ```
-result = ({'date_of_birth':'Дата рождения',
-      'date_of_issue':'Дата выдачи',
-      'first_name':'Имя',
-      'gender':'Пол',
-      'issued_by_whom':'Кем выдан',
-      'patronymic':'Отчество',
-      'place_of_birth':'Место рождения',
-      'series_and_number':'Серия и номер',
-      'surname':'Фамилия',
-      'unit_code':'Код подразделения'},
+result = ({'sign':'XXXXXXXX',
+      'date_of_issue':'Дата выдачи'},
       0)
 ```
-Флаг = 1, паспорт не обнаружен, или хотя бы 1 поле не распознано
+Флаг = 1, СТС не обнаружено, или хотя бы 1 поле не распознано
 
-Флаг = 0, все поля паспорта распознаны 
-
-## Пример распознавания ИНН:
-1. Создаём экземпляр класса:
-```
-   from passport_class import INN
-   innsprt = INN()
-```
-2. Запускаем распознавание данных:
-```
-   result = innsprt.detect_inn('path_to_image.jpg')
-```
-
-На выходе получаем данные в виде словаря и флага.
-
-```
-result = ({'fio': 'ИВАНОВ ИВАН ИВАНОВИЧ', 
-            'inn': '482608013231'},
-             0)
-```
-Флаг = 1, паспорт не обнаружен, или хотя бы 1 поле не распознано
-
-Флаг = 0, все поля паспорта распознаны 
-
-
-## Пример распознавания СНИЛС:
-1. Создаём экземпляр класса:
-```
-   from passport_class import Snils
-    snilssprt = Snils()
-```
-2. Запускаем распознавание данных:
-```
-   result = snilssprt.detect_inn('path_to_image.jpg')
-```
-
-На выходе получаем данные в виде словаря и флага.
-
-```
-result = ({'fio': 'ИВАНОВ ИВАН ИВАНОВИЧ', 
-            'number_strah': '187-220-276 69'},
-             0)
-```
-Флаг = 1, паспорт не обнаружен, или хотя бы 1 поле не распознано
-
-Флаг = 0, все поля паспорта распознаны 
+Флаг = 0, все поля СТС распознаны 
