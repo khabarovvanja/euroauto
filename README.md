@@ -4,7 +4,7 @@
 
 1. Клонируем репозиторий GIT:
 ```
-    git clone https://github.com/khabarovvanja/euroauto.git -b YOLO_5
+    git clone https://github.com/khabarovvanja/euroauto.git
 ```
 2. Устанавливаем необхоимые библиотеки:
 ```
